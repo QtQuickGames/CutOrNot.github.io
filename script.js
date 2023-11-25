@@ -52,7 +52,7 @@ data.forEach(element=>{
 var marker = L.marker(element,{icon:treeIcon}).addTo(map);
 marker.bindTooltip(`element coordinates: ${element[0].toFixed(2)} , ${element[1].toFixed(2)}`);
 });
-*/
+
 
 data = await collectAreaData('geojson/polygon.geojson');
 data.forEach(element=>{
@@ -63,6 +63,7 @@ data = await collectAreaData('geojson/circle.geojson');
 data.forEach(element=>{
 var lodz = L.polygon(element, {color: 'green'}).addTo(map);
 });
+*/
 
 //cluster na mapę
 
