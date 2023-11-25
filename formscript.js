@@ -1,0 +1,261 @@
+let form = document.getElementById('form');
+let tree;
+let centimeters;
+let comp;
+
+function checkAll()
+{
+    if(document.getElementById('out') != undefined)
+    {
+        document.getElementById('out').remove();  
+    } 
+
+    if(document.getElementById('out2') != undefined)
+    {
+        document.getElementById('out2').remove();  
+    } 
+
+    let cons = document.getElementById('conservating').value;
+    if (cons != "none") {
+    let paragraph = document.createElement("p");
+    paragraph.classList.add("h3");
+    paragraph.style.color = (comp == "tak" ? "#dc3545" : "#ffc107");
+    paragraph.style.padding = "10px";
+    paragraph.id = "out";
+    paragraph.appendChild(document.createTextNode(comp == "tak" ? "Musisz mieć zezwolenie" : "Musisz zgłosić usunięcie drzewa" ));
+    form.appendChild(paragraph);
+    let paragraph2 = document.createElement("p");
+    paragraph2.classList.add("h3");
+    paragraph2.style.color = (comp == "tak" ? "#dc3545" : "#ffc107");
+    paragraph2.style.padding = "10px";
+    paragraph2.id = "out2";
+    if(comp == "tak"){
+    paragraph2.appendChild(document.createTextNode(cons == "tak" ? "Wniosek o zezwolenie należy złożyć do wojewódzkiego konserwatora zabytków" : "Wniosek o zezwolenie należy złożyć do Wójta/Burmistrza/Prezydenta" ));
+    }else{
+        paragraph2.appendChild(document.createTextNode(cons == "tak" ? "Zgłoszenie należy złożyć do wojewódzkiego konserwatora zabytków" : "Zgłoszenie należy złożyć do Wójta/Burmistrza/Prezydenta" ));
+    }
+    form.appendChild(paragraph2);
+    }   
+}
+
+function checkConservating()
+{
+  
+    if(document.getElementById('lconservating') != undefined)
+    {
+        document.getElementById('lconservating').remove();  
+    }
+
+    if(document.getElementById('conservating') != undefined)
+    {
+        document.getElementById('conservating').remove();  
+    }
+
+    if(document.getElementById('out') != undefined)
+    {
+        document.getElementById('out').remove();  
+    } 
+    
+    if(document.getElementById('out2') != undefined)
+    {
+        document.getElementById('out2').remove();  
+    }
+
+    comp = document.getElementById('company').value;
+
+    if(comp != "none")
+    {
+        let labelForConservation = document.createElement("label");
+        labelForConservation.id = 'lconservating';
+        labelForConservation.appendChild(document.createTextNode(`Nieruchomość (budynek z działką) znajduje się pod opieką konserwatorską?`));
+        labelForConservation.style.display = "block";
+        form.appendChild(labelForConservation);
+        let select = document.createElement("select");
+        select.id = "conservating";
+        select.style.borderColor = "black";
+        select.style.width = "10%";
+        select.style.borderRadius = "10px";
+        select.classList.add("form-select");
+        let opt1 = document.createElement("option");
+        opt1.value = "none";
+        opt1.selected = true;
+        opt1.appendChild(document.createTextNode("wybierz"));
+        let opt2 = document.createElement("option");
+        opt2.value = "tak";
+        opt2.appendChild(document.createTextNode("tak"));
+        let opt3 = document.createElement("option");
+        opt3.value = "nie";
+        opt3.appendChild(document.createTextNode("nie"));
+        select.appendChild(opt1);
+        select.appendChild(opt2);
+        select.appendChild(opt3);
+        select.onchange = checkAll;
+        form.appendChild(select);
+    }
+
+}
+
+function collectTreeWidth()
+{
+    let spec;
+    if(document.getElementById('lcompany') != undefined)
+    {
+        document.getElementById('lcompany').remove();  
+    }
+
+    if(document.getElementById('company') != undefined)
+    {
+        document.getElementById('company').remove();  
+    }
+
+    if(document.getElementById('lconservating') != undefined)
+    {
+        document.getElementById('lconservating').remove();  
+    }
+
+    if(document.getElementById('conservating') != undefined)
+    {
+        document.getElementById('conservating').remove();  
+    }
+
+    if(document.getElementById('out') != undefined)
+    {
+        document.getElementById('out').remove();  
+    }
+
+    if(document.getElementById('out2') != undefined)
+    {
+        document.getElementById('out2').remove();  
+    }
+
+    if (tree == "Topola" || tree == "Wierzba" || tree == "Klon jesionolistny" || tree == "Klon srebrzysty") {
+        spec = 80;
+    } else if (tree == "Kasztanowiec zwyczajny" || tree == "Robinia akacjowa" || tree == "Plantan klonolistny") {
+        spec = 65;
+    } else {
+        spec = 50;
+    }
+
+    centimeters = Number(document.getElementById('perimeter').value);
+    if(centimeters < spec)
+    {
+        let paragraph = document.createElement("p");
+        paragraph.classList.add("h3");
+        paragraph.style.color = "#198754";
+        paragraph.style.padding = "10px";
+        paragraph.id = "out";
+        paragraph.appendChild(document.createTextNode("Nie musisz mieć zezwolenia ani dokonywać zgłoszenia"));
+        form.appendChild(paragraph);
+    } else {
+        let labelForPerimeter = document.createElement("label");
+        labelForPerimeter.id = 'lcompany';
+        labelForPerimeter.appendChild(document.createTextNode(`Drzewo ma zostać usunięte w związku z prowadzoną działalnością gospodarczą lub rolniczą?`));
+        labelForPerimeter.style.display = "block";
+        form.appendChild(labelForPerimeter);
+        let select = document.createElement("select");
+        select.id = "company";
+        select.style.borderColor = "black";
+        select.style.width = "10%";
+        select.style.borderRadius = "10px";
+        select.classList.add("form-select");
+        let opt1 = document.createElement("option");
+        opt1.value = "none";
+        opt1.selected = true;
+        opt1.appendChild(document.createTextNode("wybierz"));
+        let opt2 = document.createElement("option");
+        opt2.value = "tak";
+        opt2.appendChild(document.createTextNode("tak"));
+        let opt3 = document.createElement("option");
+        opt3.value = "nie";
+        opt3.appendChild(document.createTextNode("nie"));
+        select.appendChild(opt1);
+        select.appendChild(opt2);
+        select.appendChild(opt3);
+        select.onchange = checkConservating;
+        form.appendChild(select);
+    }
+}
+
+document.getElementById('species').addEventListener('change',()=>{
+    tree = document.getElementById('species').value;
+    if(document.getElementById('lperimeter') != undefined)
+    {
+        document.getElementById('lperimeter').remove();  
+    }
+
+    if(document.getElementById('ibr') != undefined)
+    {
+        document.getElementById('ibr').remove();  
+    }
+
+    if(document.getElementById('perimeter') != undefined)
+    {
+        document.getElementById('perimeter').remove();  
+    }
+
+    if(document.getElementById('psubmit') != undefined)
+    {
+        document.getElementById('psubmit').remove();  
+    }
+
+
+    if(document.getElementById('lcompany') != undefined)
+    {
+        document.getElementById('lcompany').remove();  
+    }
+
+    if(document.getElementById('company') != undefined)
+    {
+        document.getElementById('company').remove();  
+    }
+
+    if(document.getElementById('lconservating') != undefined)
+    {
+        document.getElementById('lconservating').remove();  
+    }
+
+    if(document.getElementById('conservating') != undefined)
+    {
+        document.getElementById('conservating').remove();  
+    }
+    
+    if(document.getElementById('out') != undefined)
+    {
+        document.getElementById('out').remove();  
+    }
+
+    if(document.getElementById('out2') != undefined)
+    {
+        document.getElementById('out2').remove();  
+    }
+
+    if(tree != "none"){
+    let labelForPerimeter = document.createElement("label");
+    labelForPerimeter.id = 'lperimeter';
+    labelForPerimeter.appendChild(document.createTextNode(`Zmierzony obwód pnia na wysokości 5cm (cm):`));
+    form.appendChild(labelForPerimeter);
+    let br = document.createElement("br");
+    br.id = 'ibr';
+    form.appendChild(br);
+    let input = document.createElement('input');
+    input.classList.add("form-control");
+    input.type = "number";
+    input.id = "perimeter";
+    input.style.width = "20%";
+    input.style.display = "inline";
+    input.style.borderRadius = "10px";
+    input.style.borderColor = "black";
+    input.style.marginRight = "5px";
+    form.appendChild(input);
+    let button = document.createElement("button");
+    button.id = 'psubmit';
+    button.type = "button";
+    button.classList.add("btn");
+    button.classList.add("btn-outline-primary");
+    button.classList.add("btn-sm");
+    button.onclick = collectTreeWidth;
+    button.style.borderRadius = "10px";
+    button.appendChild(document.createTextNode("Zatwierdź"));
+    form.appendChild(button);
+    }
+})

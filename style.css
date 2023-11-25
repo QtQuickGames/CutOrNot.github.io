@@ -1,10 +1,6 @@
-body{
-    background-color: black;
-}
-
 #map {
- height: 95vh; 
- width: 80vw;
+ height: 60vh; 
+ width: 40vw;
  margin: auto;
  margin-top: 2.5vh;
 }

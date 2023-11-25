@@ -4,39 +4,124 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
     <script src="script.js" defer></script>
-    <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="Leaflet.markercluster-1.4.1\dist\MarkerCluster.css" />
-    <link rel="stylesheet" href="Leaflet.markercluster-1.4.1\dist\MarkerCluster.Default.css" />
+    <link rel="stylesheet" href="style.css"/>
+    <link rel="stylesheet" href="bootstrap.css"/>
+    <link rel="stylesheet" href="Leaflet.markercluster-1.4.1\dist\MarkerCluster.css"/>
+    <link rel="stylesheet" href="Leaflet.markercluster-1.4.1\dist\MarkerCluster.Default.css"/>
     <script src="Leaflet.markercluster-1.4.1/dist/leaflet.markercluster-src.js"></script>
     <script src="Leaflet.markercluster-1.4.1/dist/leaflet.markercluster.js"></script>
+    <script src="formscript.js" defer></script>
+    <script src="anotherscript.js" defer></script>
     <title>Mapka</title>
-    <link rel="stylesheet" href="bootstrap.css" />
-    <script src="script.txt" defer></script>
     <style>
-        label {
-            margin-top: 1%;
+        label{
+            margin-top: 2% !important;
         }
     </style>
 </head>
-<body>
-    <p class="h1" style="padding-left: 1%; padding-top: 1%; padding-bottom: 2%; background-color: #0065A7; color:white;">Formularz - sprawdź czy możesz wyciąć swoje drzewo</p>
-    <div id="form" style="margin-left: 2%;">
-        <label>Gatunek drzewa:</label>
-        <select id="species" class="form-select" style="width: 20%; border-color: black; border-radius: 10px;">
-            <option value="none">Wybierz gatunek</option>
-            <option value="Kasztanowiec zwyczajny">Kasztanowiec zwyczajny</option>
-            <option value="Klon jesionolistny">Klon jesionolistny</option>
-            <option value="Klon srebrzysty">Klon srebrzysty</option>
-            <option value="Plantan klonolistny">Plantan klonolistny</option>
-            <option value="Robinia akacjowa">Robinia akacjowa</option>
-            <option value="Topola">Topola</option>
-            <option value="Wierzba">Wierzba</option>
-            <option value="Inny">Inny</option>
-        </select>
+<body style="font-weight: 800;">    
+    <p class="h1" style="padding-left: 1%; padding-top: 1%; padding-bottom: 2%; background-color: #0065A7; color:white;">Tytuł strony</p>
+    <div class="firsthalf" style="float:left; width: 50%;">
+        <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item" role="presentation">
+              <a class="nav-link active" data-bs-toggle="tab" id="l1" onclick="moveToForm()"  aria-selected="true" role="tab">Formularz wycinania drzewa</a>
+            </li>
+            <li class="nav-item" role="presentation">
+              <a class="nav-link" data-bs-toggle="tab" id="l2" onclick="moveToCalculator()" aria-selected="false" role="tab" tabindex="-1">Kalkulator Wchłaniania CO<sup>2</sup></a>
+            </li>
+        </ul>
+        <div id="myTabContent" class="tab-content">
+            <div class="tab-pane fade active show" id="home" role="tabpanel">
+                <div id="form" style="margin-left: 2%;">
+                    <label>Gatunek drzewa:</label>
+                <select id="species" class="form-select" style="width: 40%; border-color: black; border-radius: 10px;">
+                    <option value="none">Wybierz gatunek</option>
+                    <option value="Kasztanowiec zwyczajny">Kasztanowiec zwyczajny</option>
+                    <option value="Klon jesionolistny">Klon jesionolistny</option>
+                    <option value="Klon srebrzysty">Klon srebrzysty</option>
+                    <option value="Plantan klonolistny">Plantan klonolistny</option>
+                    <option value="Robinia akacjowa">Robinia akacjowa</option>
+                    <option value="Topola">Topola</option>
+                    <option value="Wierzba">Wierzba</option>
+                    <option value="Inny">Inny</option>
+                  </select>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="profile" role="tabpanel" style="margin-top: 5%;">
+                <div id="form2" style="margin-left: 2%; width: 45%; float:left;">
+                    <label>Podaj obwód drzewa (cm):</label> <br>
+                    <input type="number" id="num" class="form-control" style="width:60%;border-color: black; border-radius: 10px;"/> <br>
+                    <label>Podaj wysokość drzewa (cm):</label> <br>
+                    <input type="number" id="num2" class="form-control" style="width:60%;border-color: black; border-radius: 10px;"/> <br>
+                    <label>Wybierz gatunek drzewa:</label>
+                <select id="species2" class="form-select" style="width: 60%; border-color: black; border-radius: 10px;">
+                    <option value="none" selected>Wybierz gatunek</option>
+                    <option value="akacja">Akacja</option>
+                    <option value="brzoza">Brzoza</option>
+                    <option value="dab">Dąb</option>
+                    <option value="jesion">Jesion</option>
+                    <option value="jodla">Jodła </option>
+                    <option value="klon">Klon</option>
+                    <option value="orzech">Orzech</option>
+                    <option value="sosna">Sosna</option>
+                    <option value="topola">Topola</option>
+                    <option value="swierk">Świerk</option>
+                    <option value="inne">Inne</option>
+                </select>
+                <buton class="btn btn-primary" style="margin-top: 2vh; border-radius: 10px; padding-left: 4%; padding-right: 4%;" onclick="calculate()">Oblicz</buton>
+                <p class="h5" id="output" style="margin-top: 2vh; font-weight: 700;" >
+
+                </p>
+                </div>
+         
+                <div id="table" style="margin-right: 2%; width: 45%; float:left;" > 
+                    <p class="h6" style="font-weight: 700; text-align: center; margin-bottom: 4vh;"><i>Wchłanianie CO<sup>2</sup> = Objętość drzewa (m<sup>3</sup>) * Współczynnik wchłaniania CO<sup>2</sup> (kg / (m<sup>3</sup>))</i></p>
+                    <table class="table">
+                        <tr><th>Gatunek drzewa:</th><th>Współczynnik wchłaniania CO<sup>2</sup></th></tr>
+                        <tr><td>Akacja</td><td>0.85 kg/m<sup>3</sup></td></tr>
+                        <tr><td>Brzoza</td><td>0.90 kg/m<sup>3</sup></td></tr>
+                        <tr><td>Dąb</td><td>1.20 kg/m<sup>3</sup></td></tr>
+                        <tr><td>Jesion</td><td>1.10 kg/m<sup>3</sup></td></tr>
+                        <tr><td>Jodła</td><td>1.08 kg/m<sup>3</sup></td></tr>
+                        <tr><td>Klon</td><td>1.15 kg/m<sup>3</sup></td></tr>
+                        <tr><td>Orzech</td><td>1.25 kg/m<sup>3</sup></td></tr>
+                        <tr><td>Sosna</td><td>1.00 kg/m<sup>3</sup></td></tr>
+                        <tr><td>Topola</td><td>1.05 kg/m<sup>3</sup></td></tr>
+                        <tr><td>Świerk</td><td>0.95 kg/m<sup>3</sup></td></tr>
+                        <tr><td>Inne</td><td>1.00 kg/m<sup>3</sup></td></tr>
+                    </table>
+                </div>
+            </div>
+          </div>
+        </div>
     </div>
+    </div>
+    <div class="secondhalf" style="float:left; width: 50%;">
     <div id="map"></div>
+    </div>
+    <script>
+        function moveToCalculator()
+        {
+                document.getElementById('l1').classList.remove("active");
+                document.getElementById('l2').classList.add("active");
+                document.getElementById('home').classList.remove("active");
+                document.getElementById('home').classList.remove("show");
+                document.getElementById('profile').classList.add("active");
+                document.getElementById('profile').classList.add("show");
+        }
+
+        function moveToForm()
+        {
+                document.getElementById('l1').classList.add("active");
+                document.getElementById('l2').classList.remove("active");
+                document.getElementById('home').classList.add("active");
+                document.getElementById('home').classList.add("show");
+                document.getElementById('profile').classList.remove("active");
+                document.getElementById('profile').classList.remove("show");
+        }
+    </script>
 </body>
 </html>
