@@ -59,7 +59,8 @@ data.forEach(element=>{
 var eastPoland = L.polygon(element, {color: 'green'}).addTo(map);
 });
 
-data = await collectAreaData('geojson/circle.geojson');
+
+data = await collectAreaData('geojson/drzewa4p.geojson');
 data.forEach(element=>{
 var lodz = L.polygon(element, {color: 'green'}).addTo(map);
 });
@@ -68,7 +69,7 @@ var lodz = L.polygon(element, {color: 'green'}).addTo(map);
 //cluster na mapę
 
 var markers = new L.MarkerClusterGroup({});
-data = await collectPinData('geojson/sulejowek.geojson');
+data = await collectPinData('geojson/drzewa4p.geojson');
 let iterator = 1;
 data.forEach(element=>{
   let dat = L.marker([element.geometry.coordinates[1],element.geometry.coordinates[0]], {icon:treeIcon});
