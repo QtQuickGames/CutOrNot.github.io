@@ -232,7 +232,7 @@ document.getElementById('species').addEventListener('change',()=>{
     if(tree != "none"){
     let labelForPerimeter = document.createElement("label");
     labelForPerimeter.id = 'lperimeter';
-    labelForPerimeter.appendChild(document.createTextNode(`Zmierzony obwód pnia na wysokości 5cm (cm):`));
+    labelForPerimeter.appendChild(document.createTextNode(`Zmierzony obwód pnia w cm (na wysokości 5cm od ziemii):`));
     form.appendChild(labelForPerimeter);
     let br = document.createElement("br");
     br.id = 'ibr';
