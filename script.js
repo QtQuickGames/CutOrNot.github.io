@@ -68,6 +68,7 @@ var lodz = L.polygon(element, {color: 'green'}).addTo(map);
 
 //cluster na mapę
 
+let iterator = 1;
 var markers = new L.MarkerClusterGroup({});
 data = await collectPinData('geojson/sulejowek.geojson');
 data.forEach(element=>{
