@@ -3,6 +3,7 @@ async function collectPinData(fileName)
 {
 let data = await fetch(fileName);
 data = await data.text();
+console.log(data);
 data = JSON.parse(data);
 let output = [];
 data.features.forEach(element => {
