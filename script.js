@@ -70,7 +70,7 @@ var lodz = L.polygon(element, {color: 'green'}).addTo(map);
 
 let iterator = 1;
 var markers = new L.MarkerClusterGroup({});
-data = await collectPinData('geojson/sulejowek.geojson');
+data = await collectPinData('geojson/drzewa4p.geojson');
 data.forEach(element=>{
   let dat = L.marker([element.geometry.coordinates[1],element.geometry.coordinates[0]], {icon:treeIcon});
 dat.bindTooltip(`<b>id</b>: ${iterator} <br> <b>koordynaty</b>: ${element.geometry.coordinates[1].toFixed(2)}, ${element.geometry.coordinates[0].toFixed(2)}`);
