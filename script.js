@@ -73,7 +73,7 @@ var markers = new L.MarkerClusterGroup({});
 data = await collectPinData('geojson/Drzewa_WGS84.geojson');
 data.forEach(element=>{
   let dat = L.marker([element.geometry.coordinates[1], element.geometry.coordinates[0]], {icon:treeIcon});
-dat.bindTooltip(`<b>id</b>: ${iterator} <br> <b>koordynaty</b>: ${element.geometry.coordinates[1].toFixed(2)}, ${element.geometry.coordinates[0].toFixed(2)`);
+dat.bindTooltip(`<b>id</b>: ${iterator} <br> <b>koordynaty</b>: ${element.geometry.coordinates[1].toFixed(2)}, ${element.geometry.coordinates[0].toFixed(2)}`);
 iterator++;
   markers.addLayer(dat);
 });
